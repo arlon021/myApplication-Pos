@@ -3,10 +3,10 @@ package br.com.cbgomes.controller;
 
 import br.com.cbgomes.ports.input.InputPort;
 import br.com.cbgomes.request.HospitalRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.cbgomes.response.HospitalResponse;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/hospitais")
@@ -19,7 +19,13 @@ public class HospitalController {
     }
 
     @PostMapping
-    public void criarHospital(@RequestBody HospitalRequest request) {
-       this.inputPort.save(request.convertHospitalInputPort(request));
+    public HospitalResponse criarHospital(@RequestBody HospitalRequest request) {
+       var response = this.inputPort.save(request.convertHospitalInputPort(request));
+       return HospitalResponse.converteHospitalOutputPortHospitalResponse(response);
     }
+
+//    @GetMapping
+//    public List<HospitalResponse> hospitais(){
+//        // TODO: 22/01/22
+//    }
 }

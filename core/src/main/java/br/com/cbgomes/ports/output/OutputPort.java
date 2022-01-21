@@ -1,9 +1,10 @@
 package br.com.cbgomes.ports.output;
 
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
+import br.com.cbgomes.ports.data.output.HospitalOutputPort;
 import org.springframework.stereotype.Component;
 
 
 public interface OutputPort {
-    void save(HospitalInputPort hospitalInputPort);
+    HospitalOutputPort save(HospitalInputPort hospitalInputPort);
 }

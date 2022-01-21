@@ -2,6 +2,7 @@ package br.com.cbgomes;
 
 import br.com.cbgomes.domain.HospitalEntity;
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
+import br.com.cbgomes.ports.data.output.HospitalOutputPort;
 import br.com.cbgomes.ports.output.OutputPort;
 import br.com.cbgomes.repository.RepositoryPresenter;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,8 @@ public class OutputPortImpl implements OutputPort {
     }
 
     @Override
-    public void save(HospitalInputPort hospitalInputPort) {
-        this.repositoryPresenter.save(HospitalEntity.converteHospitalEntity(hospitalInputPort));
+    public HospitalOutputPort save(HospitalInputPort hospitalInputPort) {
+      var entity = this.repositoryPresenter.save(HospitalEntity.converteHospitalEntity(hospitalInputPort));
+      return HospitalEntity.converteHospitalOutputPort(entity);
     }
 }

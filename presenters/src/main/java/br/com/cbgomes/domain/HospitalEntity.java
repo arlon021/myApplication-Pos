@@ -1,6 +1,8 @@
 package br.com.cbgomes.domain;
 
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
+import br.com.cbgomes.ports.data.output.HospitalOutputPort;
+import br.com.cbgomes.ports.data.output.LocalizacaoOutputPort;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,7 +26,7 @@ public class HospitalEntity {
 
     private String endereco;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn ( name = "localizacao_ID" )
     private LocalizacaoEntity localizacao;
 
@@ -45,5 +47,23 @@ public class HospitalEntity {
                 .localizacao(localizacao)
                 .build();
 
+    }
+
+    public static HospitalOutputPort converteHospitalOutputPort(HospitalEntity hospitalEntity) {
+
+        LocalizacaoOutputPort localizacaoOutputPort = LocalizacaoOutputPort.builder()
+                .id(hospitalEntity.id)
+                .latitude(hospitalEntity.getLocalizacao().getLatitude())
+                .longitude(hospitalEntity.getLocalizacao().getLongitude())
+                .build();
+
+
+        return HospitalOutputPort.builder()
+                .id(hospitalEntity.id)
+                .nome(hospitalEntity.getNome())
+                .cnpj(hospitalEntity.getCnpj())
+                .endereco(hospitalEntity.getEndereco())
+                .localizacaoOutputPort(localizacaoOutputPort)
+                .build();
     }
 }
