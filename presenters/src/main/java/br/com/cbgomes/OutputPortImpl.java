@@ -1,5 +1,6 @@
 package br.com.cbgomes;
 
+import br.com.cbgomes.domain.HospitalEntity;
 import br.com.cbgomes.domain.PersistentObject;
 import br.com.cbgomes.ports.output.OutputPort;
 import br.com.cbgomes.repository.RepositoryPresenter;
@@ -16,6 +17,6 @@ public class OutputPortImpl implements OutputPort {
 
     @Override
     public void create() {
-        this.repositoryPresenter.save(new PersistentObject());
+        this.repositoryPresenter.save(new HospitalEntity());
     }
 }

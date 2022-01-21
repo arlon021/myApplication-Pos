@@ -1,5 +1,6 @@
 package br.com.cbgomes.usecase;
 
+import br.com.cbgomes.ports.data.input.HospitalInputPort;
 import br.com.cbgomes.ports.input.InputPort;
 import br.com.cbgomes.ports.output.OutputPort;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,7 +16,7 @@ public class InputPortImpl implements InputPort {
     }
 
     @Override
-    public void create() {
-        this.outputPort.create();
+    public void save(HospitalInputPort hospitalInputPort) {
+
     }
 }
