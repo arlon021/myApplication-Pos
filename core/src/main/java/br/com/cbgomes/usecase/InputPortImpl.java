@@ -3,7 +3,6 @@ package br.com.cbgomes.usecase;
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
 import br.com.cbgomes.ports.input.InputPort;
 import br.com.cbgomes.ports.output.OutputPort;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,5 +17,6 @@ public class InputPortImpl implements InputPort {
     @Override
     public void save(HospitalInputPort hospitalInputPort) {
 
+        this.outputPort.save(hospitalInputPort);
     }
 }

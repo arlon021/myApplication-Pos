@@ -2,11 +2,15 @@ package br.com.cbgomes.request;
 
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
 import br.com.cbgomes.ports.data.input.LocalizacaoInputPort;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class HospitalRequest {
 
     private String nome;

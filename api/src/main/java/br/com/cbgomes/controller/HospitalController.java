@@ -20,6 +20,6 @@ public class HospitalController {
 
     @PostMapping
     public void criarHospital(@RequestBody HospitalRequest request) {
-
+       this.inputPort.save(request.convertHospitalInputPort(request));
     }
 }
