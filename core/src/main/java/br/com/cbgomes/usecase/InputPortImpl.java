@@ -6,6 +6,8 @@ import br.com.cbgomes.ports.input.InputPort;
 import br.com.cbgomes.ports.output.OutputPort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InputPortImpl implements InputPort {
 
@@ -18,5 +20,10 @@ public class InputPortImpl implements InputPort {
     @Override
     public HospitalOutputPort save(HospitalInputPort hospitalInputPort) {
         return this.outputPort.save(hospitalInputPort);
+    }
+
+    @Override
+    public List<HospitalOutputPort> list() {
+        return this.outputPort.list();
     }
 }

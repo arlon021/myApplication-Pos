@@ -7,6 +7,7 @@ import br.com.cbgomes.response.HospitalResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/hospitais")
@@ -24,8 +25,12 @@ public class HospitalController {
        return HospitalResponse.converteHospitalOutputPortHospitalResponse(response);
     }
 
-//    @GetMapping
-//    public List<HospitalResponse> hospitais(){
-//        // TODO: 22/01/22
-//    }
+    @GetMapping
+    public List<HospitalResponse> hospitais(){
+        return this.inputPort
+                .list()
+                .stream()
+                .map(HospitalResponse::converteHospitalOutputPortHospitalResponse)
+                .collect(Collectors.toList());
+    }
 }

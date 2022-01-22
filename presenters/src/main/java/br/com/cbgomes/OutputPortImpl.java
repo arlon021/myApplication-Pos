@@ -7,6 +7,9 @@ import br.com.cbgomes.ports.output.OutputPort;
 import br.com.cbgomes.repository.RepositoryPresenter;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class OutputPortImpl implements OutputPort {
 
@@ -20,5 +23,14 @@ public class OutputPortImpl implements OutputPort {
     public HospitalOutputPort save(HospitalInputPort hospitalInputPort) {
       var entity = this.repositoryPresenter.save(HospitalEntity.converteHospitalEntity(hospitalInputPort));
       return HospitalEntity.converteHospitalOutputPort(entity);
+    }
+
+    @Override
+    public List<HospitalOutputPort> list() {
+        return this.repositoryPresenter
+                .findAll()
+                .stream()
+                .map(HospitalEntity::converteHospitalOutputPort)
+                .collect(Collectors.toList());
     }
 }
