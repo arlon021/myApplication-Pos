@@ -10,4 +10,5 @@ import java.util.List;
 public interface OutputPort {
     HospitalOutputPort save(HospitalInputPort hospitalInputPort);
     List<HospitalOutputPort> list();
+    void atualizarPercentualDeOcupacao(Long hospitalId, Float percentual);
 }

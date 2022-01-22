@@ -33,4 +33,9 @@ public class HospitalController {
                 .map(HospitalResponse::converteHospitalOutputPortHospitalResponse)
                 .collect(Collectors.toList());
     }
+
+    @PutMapping("/atualizar-ocupacao/{id}")
+    public void atualizaPercentualOcupacao(@PathVariable("id") Long id, @RequestParam("percentual") Float percentual) {
+        this.inputPort.atualizarPercentualDeOcupacao(id, percentual);
+    }
 }

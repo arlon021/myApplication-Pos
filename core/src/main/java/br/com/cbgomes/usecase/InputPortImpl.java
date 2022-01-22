@@ -26,4 +26,9 @@ public class InputPortImpl implements InputPort {
     public List<HospitalOutputPort> list() {
         return this.outputPort.list();
     }
+
+    @Override
+    public void atualizarPercentualDeOcupacao(Long hospitalId, Float percentual) {
+        this.outputPort.atualizarPercentualDeOcupacao(hospitalId,percentual);
+    }
 }

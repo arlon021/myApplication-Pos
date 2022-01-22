@@ -30,11 +30,13 @@ public class HospitalEntity {
     @JoinColumn ( name = "localizacao_ID" )
     private LocalizacaoEntity localizacao;
 
+
+
     private float percentualOcupacao;
 
-//    public static float atualizaPercentualDeOcupacao(Float percentual){
-//
-//    }
+    public float atualizaPercentualDeOcupacao(Float percentual){
+        return this.percentualOcupacao = percentual;
+    }
 
 
     public static HospitalEntity converteHospitalEntity(HospitalInputPort inputPort) {
@@ -50,6 +52,7 @@ public class HospitalEntity {
                 .nome(inputPort.getNome())
                 .cnpj(inputPort.getCnpj())
                 .endereco(inputPort.getEndereco())
+                .percentualOcupacao(inputPort.getPercentualDeOcupacapo())
                 .localizacao(localizacao)
                 .build();
 
@@ -69,6 +72,7 @@ public class HospitalEntity {
                 .nome(hospitalEntity.getNome())
                 .cnpj(hospitalEntity.getCnpj())
                 .endereco(hospitalEntity.getEndereco())
+                .percentualDeOcupacapo(hospitalEntity.percentualOcupacao)
                 .localizacaoOutputPort(localizacaoOutputPort)
                 .build();
     }

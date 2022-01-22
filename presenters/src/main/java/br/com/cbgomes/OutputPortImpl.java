@@ -33,4 +33,11 @@ public class OutputPortImpl implements OutputPort {
                 .map(HospitalEntity::converteHospitalOutputPort)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void atualizarPercentualDeOcupacao(Long hospitalId, Float percentual) {
+       var hospitalEntity = this.repositoryPresenter.getById(hospitalId);
+       var hospitalAtualizado = hospitalEntity.atualizaPercentualDeOcupacao(percentual);
+       this.repositoryPresenter.save(hospitalEntity);
+    }
 }
