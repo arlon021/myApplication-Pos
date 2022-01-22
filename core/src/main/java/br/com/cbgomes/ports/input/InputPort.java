@@ -11,4 +11,6 @@ public interface InputPort {
     HospitalOutputPort save(HospitalInputPort hospitalInputPort);
 
     List<HospitalOutputPort> list();
+
+    void atualizarPercentualDeOcupacao(Long hospitalId, Float percentual);
 }

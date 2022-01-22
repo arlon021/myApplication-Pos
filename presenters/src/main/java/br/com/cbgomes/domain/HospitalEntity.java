@@ -30,6 +30,12 @@ public class HospitalEntity {
     @JoinColumn ( name = "localizacao_ID" )
     private LocalizacaoEntity localizacao;
 
+    private float percentualOcupacao;
+
+//    public static float atualizaPercentualDeOcupacao(Float percentual){
+//
+//    }
+
 
     public static HospitalEntity converteHospitalEntity(HospitalInputPort inputPort) {
 
