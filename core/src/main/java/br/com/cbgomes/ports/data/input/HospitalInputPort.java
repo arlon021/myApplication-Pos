@@ -13,4 +13,5 @@ public class HospitalInputPort {
     private Float percentualDeOcupacapo;
     private LocalizacaoInputPort localizacao;
 
+
 }

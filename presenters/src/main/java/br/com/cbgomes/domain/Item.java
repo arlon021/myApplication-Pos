@@ -25,4 +25,5 @@ public class Item {
     private Integer pontosDoItem;
 
     private TipoDoItem tipoDoItem;
+
 }

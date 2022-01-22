@@ -18,6 +18,7 @@ public class HospitalRequest {
     private String endereco;
     private Float percentualDeOcupacao;
     private LocalizacaoRequest localizacao;
+    private InventarioRequest inventario;
 
 
     public HospitalInputPort convertHospitalInputPort(HospitalRequest request) {

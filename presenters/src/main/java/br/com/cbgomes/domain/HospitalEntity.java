@@ -30,7 +30,9 @@ public class HospitalEntity {
     @JoinColumn ( name = "localizacao_ID" )
     private LocalizacaoEntity localizacao;
 
-
+    @JoinColumn ( name = "inventario_ID" )
+    @OneToOne(cascade = CascadeType.ALL)
+    private InventarioEntity inventario;
 
     private float percentualOcupacao;
 

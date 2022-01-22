@@ -15,7 +15,43 @@ public enum TipoDoItem implements GerenciaItem {
             int pontos = qtd * getValor();
             return pontos;
         }
+    },
+
+    ENFERMEIRO(3, "Enfermeiro") {
+        @Override
+        public Integer calculaPontosDoItem(Item item) {
+            int qtd = item.getQuantidade();
+            int pontos = qtd * getValor();
+            return pontos;
+        }
+    },
+
+    RESPIRADOR(5, "Médico") {
+        @Override
+        public Integer calculaPontosDoItem(Item item) {
+            int qtd = item.getQuantidade();
+            int pontos = qtd * getValor();
+            return pontos;
+        }
+
+    },AMBULANCIA(10,"Ambulancia"){
+        @Override
+        public Integer calculaPontosDoItem(Item item){
+            int qtd = item.getQuantidade();
+            int pontos = qtd * getValor();
+            return pontos;
+        }
+    },
+
+    TOMOGRAFO(12,"Tomografo"){
+        @Override
+        public Integer calculaPontosDoItem(Item item){
+            int qtd = item.getQuantidade();
+            int pontos = qtd * getValor();
+            return pontos;
+        }
     };
+
 
 
     public Integer valor;
