@@ -1,8 +1,6 @@
 package br.com.cbgomes.response;
 
 import br.com.cbgomes.ports.data.output.HospitalOutputPort;
-import br.com.cbgomes.ports.data.output.LocalizacaoOutputPort;
-import br.com.cbgomes.request.LocalizacaoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,9 +18,16 @@ public class HospitalResponse {
     private String endereco;
     private Float percentualDeOcupacapo;
     private LocalizacaoResponse localizacao;
+    private InventarioResponse inventario;
 
 
     public static HospitalResponse converteHospitalOutputPortHospitalResponse(HospitalOutputPort hospitalOutputPort) {
+
+        InventarioResponse inventarioResponse = InventarioResponse.builder()
+                .pontosDoInventario(hospitalOutputPort.getInventario().getPontosDoInventario())
+                .id(hospitalOutputPort.getId())
+                .itemResponse(ItemResponse.itemOutputPortToResponse(hospitalOutputPort.getInventario().getItens()))
+                .build();
 
         LocalizacaoResponse localizacaoOutputPort = LocalizacaoResponse.builder()
                 .id(hospitalOutputPort.getLocalizacaoOutputPort().getId())
@@ -37,6 +42,7 @@ public class HospitalResponse {
                 .endereco(hospitalOutputPort.getEndereco())
                 .percentualDeOcupacapo(hospitalOutputPort.getPercentualDeOcupacapo())
                 .localizacao(localizacaoOutputPort)
+                .inventario(inventarioResponse)
                 .build();
 
         return hospitalResponse;

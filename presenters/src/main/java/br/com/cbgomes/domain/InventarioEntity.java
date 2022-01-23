@@ -28,7 +28,6 @@ public class InventarioEntity {
         if (this.itens == null) {
             return;
         }
-
         this.itens.forEach( item -> {
             this.pontosDoInventario = item.getTipoDoItem().calculaPontosDoItem(item);
         });

@@ -1,11 +1,16 @@
 package br.com.cbgomes.domain;
 
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
+import br.com.cbgomes.ports.data.input.ItemInputPort;
 import br.com.cbgomes.ports.data.output.HospitalOutputPort;
+import br.com.cbgomes.ports.data.output.InventarioOutputPort;
+import br.com.cbgomes.ports.data.output.ItemOutputPort;
 import br.com.cbgomes.ports.data.output.LocalizacaoOutputPort;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Getter
@@ -40,8 +45,14 @@ public class HospitalEntity {
         return this.percentualOcupacao = percentual;
     }
 
-
     public static HospitalEntity converteHospitalEntity(HospitalInputPort inputPort) {
+
+        InventarioEntity inventario = InventarioEntity
+                .builder()
+                .id(null)
+                .itens(Item.itemInputPortToItem(inputPort.getInventario().getItens()))
+                .build();
+        inventario.calcularPontos();
 
         LocalizacaoEntity localizacao = LocalizacaoEntity.builder()
                 .id(null)
@@ -56,11 +67,17 @@ public class HospitalEntity {
                 .endereco(inputPort.getEndereco())
                 .percentualOcupacao(inputPort.getPercentualDeOcupacapo())
                 .localizacao(localizacao)
+                .inventario(inventario)
                 .build();
-
     }
 
     public static HospitalOutputPort converteHospitalOutputPort(HospitalEntity hospitalEntity) {
+
+        InventarioOutputPort inventarioOutputPort = InventarioOutputPort.builder()
+                .id(hospitalEntity.id)
+                .pontosDoInventario(hospitalEntity.getInventario().getPontosDoInventario())
+                .itens(Item.itemToOutputPort(hospitalEntity.inventario.getItens()))
+                .build();
 
         LocalizacaoOutputPort localizacaoOutputPort = LocalizacaoOutputPort.builder()
                 .id(hospitalEntity.id)
@@ -68,13 +85,13 @@ public class HospitalEntity {
                 .longitude(hospitalEntity.getLocalizacao().getLongitude())
                 .build();
 
-
         return HospitalOutputPort.builder()
                 .id(hospitalEntity.id)
                 .nome(hospitalEntity.getNome())
                 .cnpj(hospitalEntity.getCnpj())
                 .endereco(hospitalEntity.getEndereco())
                 .percentualDeOcupacapo(hospitalEntity.percentualOcupacao)
+                .inventario(inventarioOutputPort)
                 .localizacaoOutputPort(localizacaoOutputPort)
                 .build();
     }

@@ -1,5 +1,6 @@
 package br.com.cbgomes.ports.data.output;
 
+import br.com.cbgomes.ports.data.input.InventarioInputPort;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,5 +14,8 @@ public class HospitalOutputPort {
     private String endereco;
     private Float percentualDeOcupacapo;
     private LocalizacaoOutputPort localizacaoOutputPort;
+    private InventarioOutputPort inventario;
+
+    private float percentualOcupacao;
 
 }

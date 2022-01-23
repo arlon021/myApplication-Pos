@@ -1,6 +1,7 @@
 package br.com.cbgomes.request;
 
 import br.com.cbgomes.ports.data.input.HospitalInputPort;
+import br.com.cbgomes.ports.data.input.InventarioInputPort;
 import br.com.cbgomes.ports.data.input.LocalizacaoInputPort;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,11 @@ public class HospitalRequest {
 
 
     public HospitalInputPort convertHospitalInputPort(HospitalRequest request) {
+
+        InventarioInputPort inventarioInputPort = InventarioInputPort.builder()
+                .itens(ItemRequest.itemRequestToItemInputPort(request.getInventario().getItens()))
+                .build();
+
         LocalizacaoInputPort localizacaoInputPort = LocalizacaoInputPort.builder()
                 .latitude(request.localizacao.getLatitude())
                 .longitude(request.localizacao.getLongitude())
@@ -33,6 +39,7 @@ public class HospitalRequest {
                 .endereco(request.endereco)
                 .percentualDeOcupacapo(request.percentualDeOcupacao)
                 .localizacao(localizacaoInputPort)
+                .inventario(inventarioInputPort)
                 .build();
     }
 }
